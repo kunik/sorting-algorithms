@@ -18,8 +18,10 @@ sorting_functions = [
 
 tests :: [TestCase]
 tests = [
-        TestCase "Empty list" [] []
-        --TestCase "Empty list" [1] [1]
+        TestCase "Empty list" [] [],
+        TestCase "List with one item" [1] [1],
+        TestCase "Sorted list" [1, 2, 3, 4, 10] [1, 2, 3, 4, 10],
+        TestCase "Not sorted list" [1, 9, 5, 27, 26, 21, 15, 4] [1, 4, 5, 9, 15, 21, 26, 27]
     ]
 
 runTest :: SortFn -> TestCase -> TestResult
