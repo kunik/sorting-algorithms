@@ -6,6 +6,7 @@ module Sorting.Tests
 
 import qualified Sorting.QuickSort as QS
 import qualified Sorting.Bubble as B
+import qualified Sorting.Insertion as I
 
 data SortFn = SortFn String ([Integer] -> [Integer])
 data TestCase = TestCase String [Integer] [Integer] deriving Show
@@ -14,7 +15,8 @@ data TestResult = TestResult String String Bool deriving Show
 sorting_functions :: [SortFn]
 sorting_functions = [
         SortFn "Quick Sort" QS.sort,
-        SortFn "Bubble Sort" B.sort
+        SortFn "Bubble Sort" B.sort,
+        SortFn "Insertion Sort" I.sort
     ]
 
 
