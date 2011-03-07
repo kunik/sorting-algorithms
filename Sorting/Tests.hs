@@ -9,6 +9,7 @@ import qualified Sorting.Bubble as B
 import qualified Sorting.Insertion as I
 import qualified Sorting.Selection as S
 import qualified Sorting.Shell as Sh
+import qualified Sorting.Merge as M
 
 data SortFn = SortFn String ([Integer] -> [Integer])
 data TestCase = TestCase String [Integer] [Integer] deriving Show
@@ -20,7 +21,8 @@ sorting_functions = [
         SortFn "Bubble Sort" B.sort,
         SortFn "Insertion Sort" I.sort,
         SortFn "Selection Sort" S.sort,
-        SortFn "Shell Sort" Sh.sort
+        SortFn "Shell Sort" Sh.sort,
+        SortFn "Merge Sort" Sh.sort
     ]
 
 
