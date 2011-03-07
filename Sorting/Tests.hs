@@ -8,6 +8,7 @@ import qualified Sorting.QuickSort as QS
 import qualified Sorting.Bubble as B
 import qualified Sorting.Insertion as I
 import qualified Sorting.Selection as S
+import qualified Sorting.Shell as Sh
 
 data SortFn = SortFn String ([Integer] -> [Integer])
 data TestCase = TestCase String [Integer] [Integer] deriving Show
@@ -18,7 +19,8 @@ sorting_functions = [
         SortFn "Quick Sort" QS.sort,
         SortFn "Bubble Sort" B.sort,
         SortFn "Insertion Sort" I.sort,
-        SortFn "Selection Sort" S.sort
+        SortFn "Selection Sort" S.sort,
+        SortFn "Shell Sort" Sh.sort
     ]
 
 
@@ -27,7 +29,8 @@ tests = [
         TestCase "Empty list" [] [],
         TestCase "List with one item" [1] [1],
         TestCase "Sorted list" [1, 2, 3, 4, 10] [1, 2, 3, 4, 10],
-        TestCase "Not sorted list" [1, 9, 5, 27, 26, 21, 15, 4] [1, 4, 5, 9, 15, 21, 26, 27]
+        TestCase "Not sorted list" [1, 9, 5, 27, 26, 21, 15, 4] [1, 4, 5, 9, 15, 21, 26, 27],
+        TestCase "Long periodical list" (concat [[n-1, n+1, n] | n <- [1..100]]) ([0,1,1] ++ (concat [[n, n, n] | n <- [2..99]]) ++ [100, 100, 101])
     ]
 
 runTest :: SortFn -> TestCase -> TestResult
