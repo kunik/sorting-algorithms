@@ -7,16 +7,18 @@ module Sorting.Tests
 import qualified Sorting.QuickSort as QS
 import qualified Sorting.Bubble as B
 import qualified Sorting.Insertion as I
+import qualified Sorting.Selection as S
 
 data SortFn = SortFn String ([Integer] -> [Integer])
 data TestCase = TestCase String [Integer] [Integer] deriving Show
-data TestResult = TestResult String String Bool deriving Show
+data TestResult = Success String String | Fail String String deriving Show
 
 sorting_functions :: [SortFn]
 sorting_functions = [
         SortFn "Quick Sort" QS.sort,
         SortFn "Bubble Sort" B.sort,
-        SortFn "Insertion Sort" I.sort
+        SortFn "Insertion Sort" I.sort,
+        SortFn "Selection Sort" S.sort
     ]
 
 
@@ -29,7 +31,9 @@ tests = [
     ]
 
 runTest :: SortFn -> TestCase -> TestResult
-runTest (SortFn fnName fn) (TestCase testName input output) = TestResult fnName testName (output == fn input)
+runTest (SortFn fnName fn) (TestCase testName input output)
+    | output == fn input = Success fnName testName
+    | otherwise          = Fail fnName testName
 
 runTests :: SortFn -> [TestCase] -> [TestResult]
 runTests fn = foldr (\test results -> (runTest fn test):results) []
